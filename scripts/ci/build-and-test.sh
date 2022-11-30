@@ -34,11 +34,7 @@ for i in examples/*; do
   [ -e "$i" ] || continue # prevent failure if there are no examples
   echo "--> running tests for: $i"
   pushd "$i"
-  # replace pact dependency with locally build version
-  contents="$(jq '.devDependencies."@pact-foundation/pact" = "file:../../dist"' package.json)" && \
-        echo "${contents}" > package.json
-  # npm ci does not work because we have just changed the package.json file
-  npm install
+  npm ci
   npm test
   popd
 done
@@ -63,11 +59,7 @@ for i in examples/v*/*; do
   echo "------------> continuing to test V3/v$ example project: $i"
   node --version
   pushd "$i"
-  # replace pact dependency with locally build version
-  contents="$(jq '.devDependencies."@pact-foundation/pact" = "file:../../../dist"' package.json)" && \
-     echo "${contents}" > package.json
-  # npm ci does not work because we have just changed the package.json file
-  npm install
+  npm ci
   npm test
   popd
 done
