@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-expression no-empty */
-import { Verifier } from '@pact-foundation/pact';
+import { LogLevel, Verifier } from '@pact-foundation/pact';
 import path = require('path');
 import { startHTTPServer, startTCPServer } from '../provider';
 
@@ -29,6 +29,7 @@ describe('Plugins', () => {
           pactUrls: [
             path.join(__dirname, '../', 'pacts', 'myconsumer-myprovider.json'),
           ],
+          logLevel: (process.env.LOG_LEVEL as LogLevel) || 'error',
         });
 
         return v.verifyProvider();

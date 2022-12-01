@@ -20,7 +20,8 @@ describe('Plugins - Matt Protocol', () => {
       spec: SpecificationVersion.SPECIFICATION_VERSION_V4,
       logLevel: (process.env.LOG_LEVEL as LogLevel) || 'error',
     });
-    it('returns a valid MATT message over HTTP', async () => {
+
+    it.only('returns a valid MATT message over HTTP', async () => {
       const mattRequest = `{"request": {"body": "hello"}}`;
       const mattResponse = `{"response":{"body":"world"}}`;
 
@@ -33,6 +34,10 @@ describe('Plugins - Matt Protocol', () => {
           version: '0.0.2',
         })
         .withRequest('POST', '/matt', (builder) => {
+          builder.headers({
+            'content-type': 'application/matt',
+            accept: ['application/matt', 'text/matt'],
+          });
           builder.pluginContents('application/matt', mattRequest);
         })
         .willRespondWith(200, (builder) => {
@@ -43,8 +48,7 @@ describe('Plugins - Matt Protocol', () => {
             .request({
               baseURL: mockserver.url,
               headers: {
-                'content-type': 'application/matt',
-                Accept: 'application/matt',
+                Accept: 'application/matt, text/matt',
               },
               data: generateMattMessage('hello'),
               method: 'POST',
