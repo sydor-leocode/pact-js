@@ -45,7 +45,7 @@ export const startHTTPServer = (
 
   server.post('/matt', (_, res) => {
     res.setHeader('content-type', 'application/matt');
-    res.send(generateMattMessage('eoauaoeuaoe'));
+    res.send(generateMattMessage('world'));
   });
 
   server.on('error', (err) => {
