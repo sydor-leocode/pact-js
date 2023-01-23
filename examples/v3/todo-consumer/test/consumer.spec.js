@@ -93,7 +93,7 @@ describe('Pact V3', () => {
               //   'application/.*xml(;.*)?',
               //   'application/xml'
               // ),
-              'Content-Type': regex('application/todo+xml; charset=utf-8'),
+              'Content-Type': 'application/todo+xml; charset=utf-8',
             },
             body: new XmlBuilder('1.0', 'UTF-8', 'ns1:projects').build((el) => {
               el.setAttributes({
