@@ -20,12 +20,13 @@ jobs:
         node-version: [18.x]
 
     steps:
+      # sls is the abbreviated value here https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps?redirectedfrom=MSDN
       - name: Set debugging flags
         run: |-
           Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:RUNNER_TEMP
           cd $env:RUNNER_TEMP
           winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:RUNNER_TEMP /quiet
-          gflags /k +Flag FLG_SHOW_LDR_SNAPS
+          gflags /k +sls
         shell: pwsh
       - uses: actions/checkout@v2
         with:
