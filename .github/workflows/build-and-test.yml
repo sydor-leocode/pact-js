@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
       - name: Set debugging flags
         run: |-
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:GITHUB_WORKSPACE
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile "${env:GITHUB_WORKSPACE}\winsdksetup.exe"
           cd $env:GITHUB_WORKSPACE
           winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE /quiet
           gflags /k +sls
