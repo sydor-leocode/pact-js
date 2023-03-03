@@ -20,6 +20,13 @@ jobs:
         node-version: [18.x]
 
     steps:
+      - name: Set debugginsg flags
+        run: |-
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile c:\
+          cd c:\
+          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath "c:\" /quiet
+          c:\gflags /k +Flag FLG_SHOW_LDR_SNAPS
+        shell: pwsh
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -31,13 +38,6 @@ jobs:
         run: |-
           npm install --global node-gyp@latest
           npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
-        shell: pwsh
-      - name: Set debugginsg flags
-        run: |-
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile c:\
-          cd c:\
-          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath "c:\" /quiet
-          c:\gflags /k +Flag FLG_SHOW_LDR_SNAPS
         shell: pwsh
       - run: bash scripts/ci/build-and-test.sh
         shell: bash
