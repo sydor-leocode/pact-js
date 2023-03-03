@@ -21,16 +21,16 @@ jobs:
 
     steps:
       # sls is the abbreviated value here https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps?redirectedfrom=MSDN
-      - name: Set debugging flags
-        run: |-
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:TEMP
-          cd $env:TEMP
-          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:TEMP /quiet
-          gflags /k +sls
-        shell: pwsh
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Set debugging flags
+        run: |-
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:GITHUB_WORKSPACE
+          cd $env:GITHUB_WORKSPACE
+          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE /quiet
+          gflags /k +sls
+        shell: pwsh
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
