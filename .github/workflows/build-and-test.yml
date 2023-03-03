@@ -20,12 +20,12 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - name: Set debugginsg flags
+      - name: Set debugging flags
         run: |-
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile c:\
-          cd c:\
-          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath "c:\" /quiet
-          c:\gflags /k +Flag FLG_SHOW_LDR_SNAPS
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:RUNNER_TEMP
+          cd $env:RUNNER_TEMP
+          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:RUNNER_TEMP /quiet
+          $env:RUNNER_TEMP\gflags /k +Flag FLG_SHOW_LDR_SNAPS
         shell: pwsh
       - uses: actions/checkout@v2
         with:
