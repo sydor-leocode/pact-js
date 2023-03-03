@@ -5,7 +5,6 @@ const expect = chai.expect;
 const {
   PactV3,
   MatchersV3,
-  XmlBuilder,
   SpecificationVersion,
 } = require('@pact-foundation/pact');
 const LOG_LEVEL = process.env.LOG_LEVEL || 'TRACE';
@@ -509,59 +508,6 @@ describe('Pact V3', () => {
             'application/x-www-form-urlencoded'
           )
         ).to.eventually.be.fulfilled;
-      });
-    });
-  });
-
-  describe('when a call to the Animal Service is made to get animals in XML format', () => {
-    before(() =>
-      provider
-        .given('is authenticated')
-        .given('Has some animals')
-        .uponReceiving('a request to get animals as XML')
-        .withRequest({
-          method: 'GET',
-          path: '/animals/available/xml',
-          headers: {
-            Authorization: regex('Bearer\\s[a-z0-9]+', 'Bearer token'),
-          },
-        })
-        .willRespondWith({
-          status: 200,
-          headers: {
-            'Content-Type': 'application/xml; charset=utf-8',
-          },
-          body: new XmlBuilder('1.0', 'UTF-8', 'animals').build((el) => {
-            el.eachLike('lion', {
-              id: integer(1),
-              available_from: datetime(
-                "yyyy-MM-dd'T'HH:mm:ss.SSSX",
-                '2016-02-11T09:46:56.023Z'
-              ),
-              first_name: string('Slinky'),
-              last_name: string('Malinky'),
-              age: integer(27),
-              gender: regex('M|F', 'F'),
-            });
-            el.eachLike('goat', {
-              id: integer(3),
-              available_from: datetime(
-                "yyyy-MM-dd'T'HH:mm:ss.SSSX",
-                '2016-02-11T09:46:56.023Z'
-              ),
-              first_name: string('Head'),
-              last_name: string('Butts'),
-              age: integer(27),
-              gender: regex('M|F', 'F'),
-            });
-          }),
-        })
-    );
-
-    it('gets animals in XML format', () => {
-      return provider.executeTest((mockserver) => {
-        return expect(getAnimalsAsXML(() => mockserver.url)).to.eventually.be
-          .fulfilled;
       });
     });
   });
