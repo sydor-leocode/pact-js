@@ -38,6 +38,7 @@ for i in examples/*; do
         echo "${contents}" > package.json
   # npm ci does not work because we have just changed the package.json file
   npm install
+  rm -rf ./node_modules/@pact-foundation/pact-core
   npm test
   popd
 done
@@ -67,6 +68,7 @@ for i in examples/v*/*; do
      echo "${contents}" > package.json
   # npm ci does not work because we have just changed the package.json file
   npm install
+  rm -rf ./node_modules/@pact-foundation/pact-core
   npm test
   popd
 done
