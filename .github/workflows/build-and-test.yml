@@ -23,9 +23,9 @@ jobs:
       # sls is the abbreviated value here https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps?redirectedfrom=MSDN
       - name: Set debugging flags
         run: |-
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:RUNNER_TEMP
-          cd $env:RUNNER_TEMP
-          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:RUNNER_TEMP /quiet
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile $env:TEMP
+          cd $env:TEMP
+          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:TEMP /quiet
           gflags /k +sls
         shell: pwsh
       - uses: actions/checkout@v2
