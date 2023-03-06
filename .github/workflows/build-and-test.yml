@@ -32,7 +32,7 @@ jobs:
           Get-ChildItem .
           ./winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE
           Get-ChildItem .
-          ./gflags /k +sls
+          gflags /k +sls
         shell: pwsh
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
