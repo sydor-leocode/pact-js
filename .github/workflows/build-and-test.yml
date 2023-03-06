@@ -28,10 +28,10 @@ jobs:
         run: |-
           cd "${env:GITHUB_WORKSPACE}"
           Get-ChildItem .
-          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743  -OutFile winsdksetup.exe
+          Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile winsdksetup.exe
           Get-ChildItem .
-          winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE /quiet
-          gflags /k +sls
+          ./winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE /quiet
+          ./gflags /k +sls
         shell: pwsh
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
