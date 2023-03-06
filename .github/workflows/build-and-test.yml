@@ -30,7 +30,7 @@ jobs:
           Get-ChildItem .
           Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2173743 -OutFile winsdksetup.exe
           Get-ChildItem .
-          ./winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE
+          .\winsdksetup.exe /features OptionId.WindowsDesktopDebugger /installpath $env:GITHUB_WORKSPACE
           Get-ChildItem .
           gflags /k +sls
         shell: pwsh
