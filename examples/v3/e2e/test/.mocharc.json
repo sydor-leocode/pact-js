@@ -1,9 +1,11 @@
-
 {
+    "bail": true,
     "reporter": "spec",
-    "slow": 1500,
+    "colors": true,
     "timeout": 60000,
-    "recursive": true,
     "exit": true,
-    "coverage": false
-}
+    "require": ["ts-node/register", "source-map-support/register"],
+    "full-trace": true,
+    "recursive": true
+  }
+  

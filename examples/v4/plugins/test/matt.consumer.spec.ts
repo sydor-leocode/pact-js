@@ -10,7 +10,7 @@ chai.use(chaiAsPromised);
 
 const { expect } = chai;
 
-(process.platform === 'win32' ? describe.skip : describe)(
+describe(
   'Plugins - Matt Protocol',
   () => {
     const HOST = '127.0.0.1';
