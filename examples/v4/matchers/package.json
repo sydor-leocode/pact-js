@@ -12,11 +12,11 @@
   "author": "matt.fellows@onegeek.com.au",
   "license": "MIT",
   "devDependencies": {
-    "@pact-foundation/pact": "file:../../../dist",
+    "@pact-foundation/pact": "12.1.0",
     "@types/chai": "^4.3.3",
     "@types/chai-as-promised": "7.1.5",
     "@types/mocha": "^9.1.1",
-    "axios": "^1.2.0",
+    "axios": "^1.6.1",
     "chai": "^3.5.0",
     "chai-as-promised": "^7.1.1",
     "express": "^4.18.1",
