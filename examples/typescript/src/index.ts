@@ -9,12 +9,12 @@ export class DogService {
     this.port = endpoint.port;
   }
 
-  public getMeDogs = (): AxiosPromise => {
-    return axios.request({
-      baseURL: `${this.url}:${this.port}`,
+  public getMeDogs = async (): Promise<any> => {
+    const res = await fetch(`${this.url}:${this.port}/dogs`, {
       headers: { Accept: 'application/json' },
       method: 'GET',
-      url: '/dogs',
     });
+
+    return res.json();
   };
 }
