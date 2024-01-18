@@ -1,0 +1,93 @@
+{
+  "consumer": {
+    "name": "myconsumer"
+  },
+  "interactions": [
+    {
+      "description": "a MATT message",
+      "pending": false,
+      "request": {
+        "contents": {
+          "content": "TUFUVGhlbGxvdGNwTUFUVA==",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": "base64"
+        }
+      },
+      "response": [
+        {
+          "contents": {
+            "content": "TUFUVHRjcHdvcmxkTUFUVA==",
+            "contentType": "application/matt",
+            "contentTypeHint": "DEFAULT",
+            "encoded": "base64"
+          }
+        }
+      ],
+      "transport": "matt",
+      "type": "Synchronous/Messages"
+    },
+    {
+      "description": "an HTTP request to /matt",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "the Matt protocol exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": "TUFUVGhlbGxvTUFUVA==",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": "base64"
+        },
+        "headers": {
+          "content-type": [
+            "application/matt"
+          ]
+        },
+        "method": "POST",
+        "path": "/matt"
+      },
+      "response": {
+        "body": {
+          "content": "TUFUVHdvcmxkTUFUVA==",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": "base64"
+        },
+        "headers": {
+          "content-type": [
+            "application/matt"
+          ]
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "12.0.0"
+    },
+    "pactRust": {
+      "ffi": "0.4.12",
+      "mockserver": "1.2.4",
+      "models": "1.1.14"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    },
+    "plugins": [
+      {
+        "configuration": {},
+        "name": "matt",
+        "version": "0.0.7"
+      }
+    ]
+  },
+  "provider": {
+    "name": "myprovider"
+  }
+}

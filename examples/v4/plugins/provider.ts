@@ -15,10 +15,12 @@ export const startTCPServer = (
       console.log(`received TCP socket error: ${err}. Error will be ignored`);
     });
     sock.on('data', (data) => {
-      const msg = parseMattMessage(data.toString());
+      const msg = parseMattMessage(data.toString())
+      const v12_decoded_msg = parseMattMessage(atob(msg))
+      console.log("v12_decoded_msg",v12_decoded_msg)
 
-      if (msg === 'hellotcp') {
-        sock.write(generateMattMessage('tcpworld'));
+      if (v12_decoded_msg === 'hellotcp') {
+        sock.write(btoa(generateMattMessage('tcpworld')));
       } else {
         sock.write(generateMattMessage('message not understood'));
       }

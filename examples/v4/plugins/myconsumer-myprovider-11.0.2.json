@@ -1,0 +1,95 @@
+{
+  "consumer": {
+    "name": "myconsumer"
+  },
+  "interactions": [
+    {
+      "description": "a MATT message",
+      "key": "daf974126abe44c0",
+      "pending": false,
+      "request": {
+        "contents": {
+          "content": "MATThellotcpMATT",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": false
+        }
+      },
+      "response": [
+        {
+          "contents": {
+            "content": "MATTtcpworldMATT",
+            "contentType": "application/matt",
+            "contentTypeHint": "DEFAULT",
+            "encoded": false
+          }
+        }
+      ],
+      "transport": "matt",
+      "type": "Synchronous/Messages"
+    },
+    {
+      "description": "an HTTP request to /matt",
+      "key": "b6c5b973534175ec",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "the Matt protocol exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": "MATThelloMATT",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": false
+        },
+        "headers": {
+          "content-type": [
+            "application/matt"
+          ]
+        },
+        "method": "POST",
+        "path": "/matt"
+      },
+      "response": {
+        "body": {
+          "content": "MATTworldMATT",
+          "contentType": "application/matt",
+          "contentTypeHint": "DEFAULT",
+          "encoded": false
+        },
+        "headers": {
+          "content-type": [
+            "application/matt"
+          ]
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "mockserver": "0.9.8",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    },
+    "plugins": [
+      {
+        "configuration": {},
+        "name": "matt",
+        "version": "0.0.7"
+      }
+    ]
+  },
+  "provider": {
+    "name": "myprovider"
+  }
+}
