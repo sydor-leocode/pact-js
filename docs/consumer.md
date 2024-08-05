@@ -105,7 +105,7 @@ const provider = new PactV4({
 
 // API Client that will fetch dogs from the Dog API
 // This is the target of our Pact test
-public getMeDogs = (from: string): AxiosPromise => {
+const getMeDogs = (from: string): AxiosPromise => {
   return axios.request({
     baseURL: this.url,
     params: { from },
@@ -127,7 +127,7 @@ describe('GET /dogs', () => {
       .addInteraction()
       .given('I have a list of dogs')
       .uponReceiving('a request for all dogs with the builder pattern')
-      .withRequest('GET', '/dogs' (builder) => {
+      .withRequest('GET', '/dogs', (builder) => {
           builder.query({ from: 'today' })
           builder.headers({ Accept: 'application/json' })        
       })
